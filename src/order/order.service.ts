@@ -1,7 +1,7 @@
 import {
   Injectable,
-  InternalServerErrorException,
   NotFoundException,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOrderDto } from './dto/create-order.dto';
@@ -20,7 +20,7 @@ export class OrderService {
       const createdUser = new this.orderModel(createOrderDto);
       return await createdUser.save();
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 
@@ -32,7 +32,7 @@ export class OrderService {
       }
       return user;
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 
@@ -44,7 +44,7 @@ export class OrderService {
       }
       return user;
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 
@@ -68,7 +68,7 @@ export class OrderService {
       }
       return updatedUser.save();
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 
@@ -79,7 +79,7 @@ export class OrderService {
       const user = await this.orderModel.deleteOne({ _id: id }).exec();
       return user;
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 }
