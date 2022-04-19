@@ -3,7 +3,7 @@ import { CreateOrderDto } from './create-order.dto';
 import { ObjectId } from 'mongoose';
 
 export class UpdateOrderDto extends PartialType(CreateOrderDto) {
-  id: string;
+  id: ObjectId;
   user_id: string;
   product_id: string;
   qty: number;
